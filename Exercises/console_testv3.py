@@ -123,11 +123,13 @@ def calculate_equilibrium_and_ph(initial_concentrations, equilibrium_expression)
     initial_concentrations (dict): A dictionary containing the initial concentrations of all species involved in the equilibrium.
     equilibrium_expression (str): The equilibrium expression in the format 'A = B + C; K'.
 
+
     Returns:
     dict: A dictionary containing the equilibrium concentrations of all species.
     float: The pH of the solution.
     float: The H+ concentration at equilibrium.
     """
+
     # Define the equilibrium system
     eqsys = EqSystem.from_string(equilibrium_expression)
 
@@ -174,9 +176,38 @@ while choice != "q":
         print("Balanced Reaction:", balanced_reaction_string)
     elif choice == "3":
 
-        # Example usage:
+        arr_initial_concentration = {}
+        equilibrium_expression = input(
+            "Enter the equilibrium expression e.g HC2H3O2 = H+ + C2H3O2 : "
+        )
+        number_of_compounds = input(
+            "Please enter number of compounds e.g 3 from left to right : "
+        )
+        for i in range(int(number_of_compounds)):
+            temp = input(
+                "Enter the initial concentration e.g. HC2H3O2: 0.2, H+: 1e-7, C2H3O2-: 0.1 : "
+            )
+            arr_initial_concentration.append(temp)
+
         initial_conditions = defaultdict(
-            float, {"HC2H3O2": 0.2, "H+": 1e-7, "C2H3O2-": 0.1}
+            float,
+            {
+                "HC2H3O2": arr_initial_concentration[0],
+                "H+": arr_initial_concentration[1],
+                "C2H3O2-": arr_initial_concentration[2],
+            },
+        )
+
+        output = calculate_equilibrium_and_ph(
+            initial_conditions, equilibrium_expression
+        )
+
+        print(output)
+
+        # Example usage:
+        # initial_conditions = defaultdict(
+        #
+        """  float, {"HC2H3O2": 0.2, "H+": 1e-7, "C2H3O2-": 0.1}
         )
         equilibrium_eq = "HC2H3O2 = H+ + C2H3O2-; 1.8*10**-5"
         equilibrium_concentrations, pH_value, h_plus_concentration = (
@@ -185,7 +216,7 @@ while choice != "q":
 
         print("Equilibrium Concentrations:", equilibrium_concentrations)
         print("pH: %.2f" % pH_value)
-        print("H+ concentration: %.2e" % h_plus_concentration)
+        print("H+ concentration: %.2e" % h_plus_concentration) """
 
     elif choice == "q":
         quit()

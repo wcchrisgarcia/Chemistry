@@ -1,26 +1,9 @@
-# https://introtopython.org/terminal_apps.html
-
-import os
-import pickle
-
 from chempy import Substance
 import quantities as q
-
-import re
-from sympy import Matrix, lcm
-
 from chempy import balance_stoichiometry
-
-
 from collections import defaultdict
 from chempy.equilibria import EqSystem
 from math import log10
-
-# Greeter is a terminal application that greets old friends warmly,
-#   and remembers new friends.
-
-
-### FUNCTIONS ###
 
 
 def calculate_substance_properties(formula):
@@ -39,8 +22,6 @@ def calculate_substance_properties(formula):
 
 
 def display_title_bar():
-    # Clears the terminal screen, and displays a title bar.
-    # os.system("clear")
 
     print("\t**********************************************")
     print("\t************Chemistry Calculator***************")
@@ -48,7 +29,7 @@ def display_title_bar():
 
 
 def get_user_choice():
-    # Let users know what they can do.
+
     print("\n[1] Calculate Molar Mass.")
     print("[2] Balance Chemical Equation.")
     print("[3] Calculate Concentration of an Equilibrium Reaction.")
